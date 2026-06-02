@@ -1,6 +1,6 @@
 import { useState} from 'react'
 import './ChatInput.css'
-import { Chatbot } from 'supersimpledev';
+import { getAIResponse } from '../services/aiService';
 
 export function ChatInput({ chatMessages, setChatMessages }) {
         const [inputText, setInputText] = useState('');
@@ -27,13 +27,13 @@ export function ChatInput({ chatMessages, setChatMessages }) {
           // Because we don't save this message in newChatMessages,
            // it will be remove later, when we add the response.
            {
-             message: 'This bitch is thinking...',
+             message: 'Fuck me...',
              sender: 'robot',
              id: crypto.randomUUID()
            }
         ]);
 
-          const response = await(Chatbot.getResponseAsync(inputText));
+          const response = await getAIResponse(inputText);
           setChatMessages([
             ...newChatMessages,
             {

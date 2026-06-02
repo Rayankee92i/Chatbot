@@ -1,0 +1,65 @@
+.squares-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* put above the page background but behind the chat UI */
+  z-index: 0;
+  pointer-events: none; /* allow clicks through to the app */
+  overflow: hidden;
+}
+
+.square {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color, #000);
+  transition: background 0.3s;
+}
+
+.square:hover {
+  /* note: because the container sits behind the rest of the app,
+     individual squares will not actually receive hover events
+     when used as a "background".  The prop is kept for API
+     compatibility. */
+  background: var(--hover-color, transparent);
+}
+
+.move-diagonal {
+  animation: move-diag var(--animation-duration, 2s) linear infinite;
+}
+
+.move-horizontal {
+  animation: move-horiz var(--animation-duration, 2s) linear infinite;
+}
+
+.move-vertical {
+  animation: move-vert var(--animation-duration, 2s) linear infinite;
+}
+
+@keyframes move-diag {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--square-size), var(--square-size));
+  }
+}
+
+@keyframes move-horiz {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--square-size));
+  }
+}
+
+@keyframes move-vert {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--square-size));
+  }
+}
